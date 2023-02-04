@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const dataTypes = require('sequelize/lib/data-types.js');
 
 const sequelize = require('../config/connection.js');
 
@@ -14,9 +15,9 @@ Tag.init(
       }
     },
     products: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(dataTypes.STRING),
       allowNull:false,
-      
+
     }
     // define columns
   },

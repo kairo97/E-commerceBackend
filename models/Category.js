@@ -6,6 +6,17 @@ class Category extends Model {}
 
 Category.init(
   {
+    catergoryName: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        isAlphanumeric:true
+      }
+    },
+    product: {
+      type:DataTypes.ARRAY(DataTypes.STRING),
+      allowNull:false
+    }
     // define columns
   },
   {
