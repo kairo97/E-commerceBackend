@@ -6,6 +6,18 @@ class Tag extends Model {}
 
 Tag.init(
   {
+    tagName:{
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        isAlphanumeric:true
+      }
+    },
+    products: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      
+    }
     // define columns
   },
   {
