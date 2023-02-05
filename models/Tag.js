@@ -13,11 +13,6 @@ Tag.init(
       validate:{
         isAlphanumeric:true
       }
-    },
-    products: {
-      type: DataTypes.ARRAY(dataTypes.STRING),
-      allowNull:false,
-
     }
     // define columns
   },

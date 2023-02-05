@@ -12,10 +12,6 @@ Category.init(
       validate:{
         isAlphanumeric:true
       }
-    },
-    product: {
-      type:DataTypes.ARRAY(DataTypes.STRING),
-      allowNull:false
     }
     // define columns
   },
