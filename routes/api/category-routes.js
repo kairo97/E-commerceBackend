@@ -22,8 +22,8 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Products
   Category.findByPk(rew.params.id,{
     include:[{
-      model:Product,
-      include:[Category]
+      model:Category,
+      include:[Product]
     }]
   }).then(data=>{
     if(data){
