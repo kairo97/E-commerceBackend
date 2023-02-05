@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     include:[{
       model:Category,
       model:Tag,
+      model:ProductTag,
       include:[Product]
     }]
     res.json(data)
