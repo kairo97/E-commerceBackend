@@ -5,18 +5,71 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // get all products
 router.get('/', (req, res) => {
+  Product.findAll().then(data=>{
+    include:[{
+      model:Category,
+      model:Tag,
+      include:[Product]
+    }]
+    res.json(data)
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({
+      msg:"an error occured, sorry about that",
+      err:err
+    })
+  })
   // find all products
   // be sure to include its associated Category and Tag data
 });
 
 // get one product
 router.get('/:id', (req, res) => {
+  Product.findByPk(req.params.id,{
+    include:[{
+      model:Category,
+      model:Tag
+    }]
+  }).then(data=>{
+    if (data){
+      return res.json(data);
+    }else{
+      res.status(404).json({
+        msg:"no such record"
+      })
+    }
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({
+      msg:"an error occured, sorry about that",
+      err:err
+    })
+  })
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
 });
 
 // create new product
 router.post('/', (req, res) => {
+  Product.create({
+    productName:req.body.productName,
+    price: req.body.price,
+    stock:req.body.stock,
+    tagId:req.body.tagId
+  },{
+    include:[{
+      model:Category,
+      model:Tag
+    }]
+  }).then(data=>{
+    res.status(201).json(data)
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({
+      msg:"an error occured, sorry about that",
+      err:err
+    })
+  })
   /* req.body should look like this...
     {
       product_name: "Basketball",
