@@ -4,11 +4,13 @@ const { Tag, Product, ProductTag } = require('../../models');
 // The `/api/tags` endpoint
 
 router.get('/', (req, res) => {
-  Tag.findAll().then(data=>{
+  Tag.findAll({
+
     include:[{
       model:Product,
-      include:[Tag, ProductTag]
+      include:[Tag]
     }]
+  }).then(data=>{
     res.json(data)
   }).catch(err=>{
     console.log(err);
@@ -25,7 +27,6 @@ router.get('/:id', (req, res) => {
   Tag.findByPk(req.params.id).then(data=>{
     include:[{
       model:Product,
-      include:[Tag, ProductTag]
     }]
     if(data){
       return res.json(data);

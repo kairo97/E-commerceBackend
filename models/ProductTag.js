@@ -7,14 +7,14 @@ class ProductTag extends Model {}
 
 ProductTag.init(
   {
-    productId:{
+    product_id:{
       type:DataTypes.INTEGER,
       allowNull:false,
       validate:{
         isNumeric:true
       }
     },
-    tagId:{
+    tag_id:{
       type:DataTypes.INTEGER,
       allowNull:false,
       validate:{

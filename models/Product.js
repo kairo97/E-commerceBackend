@@ -9,7 +9,7 @@ class Product extends Model {}
 // set up fields and rules for Product model
 Product.init(
   {
-    productName:{
+    product_name:{
       type: DataTypes.STRING,
       allowNull:false,
       validate:{
@@ -31,7 +31,7 @@ Product.init(
         isNumeric:true
       }
     },
-    categoryId:{
+    category_id:{
       type:DataTypes.INTEGER,
       allowNull:false,
       validate:{
