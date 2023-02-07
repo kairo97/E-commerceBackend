@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   Category.findAll({
     include:{
       model:Product,
-      include:[Category]
+      // include:[Category]
     }
   }).then(data=>{
     res.json(data)
