@@ -7,8 +7,8 @@ router.get('/', (req, res) => {
   Tag.findAll({
 
     include:[{
-      model:Product,
-      include:[Tag]
+      model:Product, through:ProductTag,
+      
     }]
   }).then(data=>{
     res.json(data)
