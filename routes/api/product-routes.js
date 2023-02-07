@@ -6,9 +6,7 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 // get all products
 router.get("/", (req, res) => {
   Product.findAll({
-  include:[{model:Tag,
-       through: ProductTag},
-      {model: Category}]
+    include: [{ model: Tag, through: ProductTag }, { model: Category }],
   })
     .then((data) => {
       res.json(data);
@@ -29,9 +27,10 @@ router.get("/:id", (req, res) => {
   Product.findByPk(req.params.id, {
     include: [
       {
-        model: Category,
         model: Tag,
+        through: ProductTag,
       },
+      { model: Category },
     ],
   })
     .then((data) => {
@@ -58,17 +57,19 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   Product.create(
     {
-      productName: req.body.productName,
+      id: req.params.id,
+      product_name: req.body.product_name,
       price: req.body.price,
       stock: req.body.stock,
-      tagId: req.body.tagId,
+      category_id: req.body.category_id,
     },
     {
       include: [
         {
-          model: Category,
           model: Tag,
+          through: ProductTag,
         },
+        { model: Category },
       ],
     }
   )
@@ -155,6 +156,23 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
+  Product.destroy(req.body, {
+    where:{
+       id: req.params.id 
+      }
+  }).then(data =>{
+    if (data){
+      return res.json(data)
+    } else {
+      return res.status(404).json({msg:"no record found"})
+    }
+  }).catch(err =>{
+    console.log(err)
+    res.status(500).json({
+    msg:"an error occured, sorry about that",
+    err:err
+  })
+})
   // delete one product by its `id` value
 });
 
