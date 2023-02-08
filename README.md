@@ -2,7 +2,7 @@
 # E-commerce backend database
 ## Description
         this project is a backend database for an e-commerce site  sorting inventory based on categorization
-        N/A
+        
 ## Table of contents
  *installion
  *usage
@@ -21,16 +21,11 @@
         
 ## License
         MIT license
-        
-## badges
-        undefined
+
         
 ## Features
         express.js, node.js, mysql, and sequelize
-## How to contribute
-        undefined
-        
-## Tests
-        undefined
-        
+
+## Video link  
+        https://youtu.be/uflXwEkQw7s
         
